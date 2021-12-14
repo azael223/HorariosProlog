@@ -1,1 +1,1 @@
-Proyecyo Mamalon de horarios mamalones.
+Proyecto Mamalon de horarios mamalones.
