@@ -57,8 +57,22 @@ createConnection().then(async (connection) => {
       if (turno) where = { turno };
 
       const gruposRepository = connection.getRepository(Grupo);
-      const grupos = await gruposRepository.find(where);
+      const grupos = await gruposRepository.find({
+        where,
+        relations: ["maestros"],
+      });
       res.send(grupos);
+    } catch (error) {
+      console.log(error);
+      res.status(404).send(error);
+    }
+  });
+
+  app.get("/horarios", async (req: Request, res: Response) => {
+    try {
+      const turnosRepository = connection.getRepository(Turno);
+      const horarios = await turnosRepository.find();
+      res.send(horario);
     } catch (error) {
       console.log(error);
       res.status(404).send(error);
@@ -69,3 +83,106 @@ createConnection().then(async (connection) => {
     console.log(`App Listening at http://${host}:${port}`);
   });
 });
+
+const horario = [
+  [
+    {
+      materia: "Español",
+      hora_inicio: 8,
+      hora_fin: 9,
+      maestro: "Tony Stark",
+    },
+    {
+      materia: "Ingles",
+      hora_inicio: 9,
+      hora_fin: 10,
+      maestro: "Maribel Guardia",
+    },
+    {
+      materia: "Ciencias Naturales",
+      hora_inicio: 10,
+      hora_fin: 11,
+      maestro: "Bad Bunny",
+    },
+  ],
+  [
+    {
+      materia: "Español",
+      hora_inicio: 8,
+      hora_fin: 9,
+      maestro: "Tony Stark",
+    },
+    {
+      materia: "Ingles",
+      hora_inicio: 9,
+      hora_fin: 10,
+      maestro: "Maribel Guardia",
+    },
+    {
+      materia: "Ciencias Naturales",
+      hora_inicio: 10,
+      hora_fin: 11,
+      maestro: "Bad Bunny",
+    },
+  ],
+  [
+    {
+      materia: "Español",
+      hora_inicio: 8,
+      hora_fin: 9,
+      maestro: "Tony Stark",
+    },
+    {
+      materia: "Ingles",
+      hora_inicio: 9,
+      hora_fin: 10,
+      maestro: "Maribel Guardia",
+    },
+    {
+      materia: "Ciencias Naturales",
+      hora_inicio: 10,
+      hora_fin: 11,
+      maestro: "Bad Bunny",
+    },
+  ],
+  [
+    {
+      materia: "Español",
+      hora_inicio: 8,
+      hora_fin: 9,
+      maestro: "Tony Stark",
+    },
+    {
+      materia: "Ingles",
+      hora_inicio: 9,
+      hora_fin: 10,
+      maestro: "Maribel Guardia",
+    },
+    {
+      materia: "Ciencias Naturales",
+      hora_inicio: 10,
+      hora_fin: 11,
+      maestro: "Bad Bunny",
+    },
+  ],
+  [
+    {
+      materia: "Español",
+      hora_inicio: 8,
+      hora_fin: 9,
+      maestro: "Tony Stark",
+    },
+    {
+      materia: "Ingles",
+      hora_inicio: 9,
+      hora_fin: 10,
+      maestro: "Maribel Guardia",
+    },
+    {
+      materia: "Ciencias Naturales",
+      hora_inicio: 10,
+      hora_fin: 11,
+      maestro: "Bad Bunny",
+    },
+  ],
+];

@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Grupo } from "./Grupo";
 
-@Entity({ name: "turnos", synchronize: false })
+@Entity()
 export class Turno {
   @PrimaryGeneratedColumn()
   id: number;
@@ -15,6 +15,6 @@ export class Turno {
   @Column({ type: "time" })
   hora_fin: Date;
 
-  // @OneToMany(() => Grupo, (grupo) => grupo.turno)
-  // grupos: Grupo[];
+  @OneToMany(() => Grupo, (grupo) => grupo.turno)
+  grupos: Grupo[];
 }

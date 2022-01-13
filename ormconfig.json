@@ -4,7 +4,7 @@
   "port": 3306,
   "username": "root",
   "password": "110211",
-  "database": "horarios_escolares",
+  "database": "horarios",
   "synchronize": true,
   "logging": false,
   "entities": ["src/entity/**/*.ts"],
