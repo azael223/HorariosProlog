@@ -2,12 +2,13 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToMany,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from "typeorm";
-import { Clase } from "./Clase";
 import { Grupo } from "./Grupo";
+import { Materia } from "./Materia";
+import { Seleccion } from "./Seleccion";
 
 @Entity()
 export class Maestro {
@@ -17,10 +18,14 @@ export class Maestro {
   @Column({ type: "varchar", length: 45 })
   nombre: string;
 
-  @OneToMany(() => Clase, (clase) => clase.materia)
-  clases: Clase[];
+  @ManyToMany(() => Materia, (materia) => materia.maestros)
+  @JoinTable()
+  materias: Materia[];
 
   @ManyToMany(() => Grupo, (grupo) => grupo.maestros)
   @JoinTable()
   grupos: Grupo[];
+
+  @OneToMany(() => Seleccion, (seleccion) => seleccion.maestro)
+  selecciones: Seleccion[];
 }

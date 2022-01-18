@@ -9,11 +9,11 @@ export class Turno {
   @Column({ type: "varchar", length: 45 })
   nombre: string;
 
-  @Column({ type: "time" })
-  hora_inicio: Date;
+  @Column({ type: "int" })
+  hora_inicio: number;
 
-  @Column({ type: "time" })
-  hora_fin: Date;
+  @Column({ type: "int" })
+  hora_fin: number;
 
   @OneToMany(() => Grupo, (grupo) => grupo.turno)
   grupos: Grupo[];

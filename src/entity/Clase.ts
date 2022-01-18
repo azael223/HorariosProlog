@@ -6,7 +6,6 @@ import {
   JoinTable,
 } from "typeorm";
 import { Grupo } from "./Grupo";
-import { Maestro } from "./Maestro";
 import { Materia } from "./Materia";
 
 @Entity()
@@ -20,7 +19,6 @@ export class Clase {
   @ManyToOne(() => Materia, (materia) => materia.clases)
   materia: Materia;
 
-  @ManyToOne(() => Maestro, (maestro) => maestro.clases)
-  @JoinTable()
-  maestro: Maestro;
+  @Column({ type: "int" })
+  limiteSemana: number;
 }
